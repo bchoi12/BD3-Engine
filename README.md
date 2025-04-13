@@ -1,15 +1,20 @@
-# blockdudes3
-
- * external name: birdtown (pending)
- * internal name: blockdudes3
+# BD3 Engine
 
 ## Overview
 
-The third version of Block Dudes, a team-based 2.5D multiplayer shooter that runs in your browser with no setup required. My goal was to build a multiplayer game that could handle [twitch gameplay](https://en.wikipedia.org/wiki/Twitch_gameplay), but also had a low barrier to entry--i.e. no installs required, support for older machines, and minimal time for game setup.
+BD3 Engine is a learning exercise/experiment to build a low-cost online multiplayer game with minimal barrier to entry.
+
+The main game engine is built in Golang because I wanted to learn it, but also because it's reasonably fast and has good support for concurrency. The game engine uses a custom ECS (Entity-Component-System) framework and in-house netcode + physics engine + basic spatial indexing. Each piece is lightweight, so a single 4GB ram server (~$20/month) can run 15+ concurrent games at 62Hz each. The servers currently live on Google Cloud.
+
+The client is built with Typescript and Three.js, which allows it to be run within any modern web browser or exported as a desktop application via tools like Electron.js. I also compiled the main game engine with WebAssembly so it could be executed within the browser to perform client-side prediction.
+
+The netcode leverages WebRTC in addition to WebSocket to emulate a UDP-like data stream. This allows for more fast, precise gameplay.
 
 ### Status
 
-Needs polish, but fully playable with lots of technical features. I'm also exploring building a [similar engine](https://github.com/bchoi12/birdtown) that is also browser-based, but fully P2P to cut out server costs
+Fully playable and able to support scheduled playtests.
+
+Canceled in favor of exploring a [P2P approach](https://github.com/bchoi12/birdtown) as opposed to having centralized game servers. IMO, unfortunately it is extremely difficult for a small development team to manage game servers and not lose lots of money.
 
 ### Screenshots
 
